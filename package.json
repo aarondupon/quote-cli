@@ -19,7 +19,7 @@
     "test": "jest --verbose --runInBand",
     "start": "tsx src/index.ts",
     "dev": "tsx --watch src/index.ts  --character=Homer",
-    "build": "pkgroll"
+    "build": "pkgroll --env.BASE_URL=https://api.oss117quotes.xyz/v1"
   },
   "author": "",
   "license": "ISC",
