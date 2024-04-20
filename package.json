@@ -1,0 +1,50 @@
+{
+  "name": "@aarondupon/quote-cli",
+  "version": "1.0.0",
+  "description": "quote CLI for 3d slide",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.7",
+    "jest": "^29.7.0",
+    "pkgroll": "^2.0.2",
+    "tsx": "^4.7.2"
+  },
+  "scripts": {
+    "test": "jest --verbose --runInBand",
+    "start": "tsx src/index.ts",
+    "dev": "tsx --watch src/index.ts  --character=Homer",
+    "build": "pkgroll"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "yargs": "^17.7.2"
+  },
+  "bin": {
+    "quote-cli": "./cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "quote-cli"
+  ],
+  "exports": {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "type": "module"
+}
