@@ -1,5 +1,6 @@
 import { CharacterWithQuotes, QuoteWithSlug } from "./types";
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
+
 dotenv.config();
 
 const BASE_URL = process.env.BASE_URL;
@@ -22,10 +23,10 @@ export async function fetchQuotesAll(): Promise<CharacterWithQuotes[]> {
 /**
  * Fetches quotes for specified characters.
  * @param {string[]} characters - An array of character names.
- * @returns {Promise<QuoteWithSlug[]>} A promise that resolves to an array of quotes.
+ * @returns {Promise<CharacterWithQuotes[]>} A promise that resolves to an array of quotes.
  * @throws {Error} If there is an error fetching quotes by characters.
  */
-export async function fetchQuotesByCharacters(characters: string[]): Promise<QuoteWithSlug[]> {
+export async function fetchQuotesByCharacters(characters: string[]): Promise<CharacterWithQuotes[]> {
     try {
       const responses = await Promise.all(characters.map(character => fetch(`${BASE_URL}/character/${character}`)));
       if (!responses.every(response => response.ok)) throw new Error('Failed to fetch quotes by characters');
@@ -92,30 +93,37 @@ export async function fetchQuotesRandom(count: number): Promise<QuoteWithSlug[]>
     }
   }
   
-  
 /**
  * Filters quotes by a specified keyword.
- * @param quotes The array of quotes to filter.
- * @param keyword The keyword to filter by.
- * @returns The filtered array of quotes.
+ * @param {QuoteWithSlug} quotes - The array of quotes to filter.
+ * @param {string} keyword The keyword to filter by.
+ * @returns {QuoteWithSlug} The filtered array of quotes.
  */
-  export const filterQuotesByKeyword = (quotes: CharacterWithQuotes[], keyword?: string): CharacterWithQuotes[] => {
+  export const filterQuotesByKeyword = (quotes: QuoteWithSlug[], keyword?: string): QuoteWithSlug[] => {
     if (!keyword) return quotes;
     const lowerCaseKeyword = keyword.toLowerCase();
-  
-    return quotes.reduce<CharacterWithQuotes[]>((arr,item)=>{
-  
-      const quotes = item.quotes.filter(quote => quote.toLowerCase().includes(lowerCaseKeyword));
-  
-      if(quotes.length){
-        arr.push({
-          ...item,
-          quotes
-        })
-      }
-      return arr;
-    }, [])
+    return quotes.filter(quote => quote.sentence.toLowerCase().includes(lowerCaseKeyword));
   };
+
+/**
+ * Filters an array of quotes by keywords.
+ * 
+ * @param {QuoteWithSlug[]} quotes - The array of quotes to filter.
+ * @param {string[]} [keywords] - The keywords to filter by.
+ * @returns {QuoteWithSlug[]} - The filtered array of quotes.
+ */
+  export const filterQuotesByKeywords = (quotes: QuoteWithSlug[], keywords?: string[]): QuoteWithSlug[] => {
+    if (!keywords || !keywords.length ) return quotes;
+    const lowerCaseKeywords = keywords.map(keyword => keyword.toLowerCase());
+
+   // Filter quotes that include at least one of the provided keywords
+   return quotes.filter(quote => {
+      const lowerCaseSentence = quote.sentence.toLowerCase();
+      return lowerCaseKeywords.some(keyword => lowerCaseSentence.includes(keyword));
+    });
+  };
+
+  
   
   /**
    * Adds slug information to quotes.

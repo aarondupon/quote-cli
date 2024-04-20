@@ -80,9 +80,31 @@ describe('quotesService', () => {
 
   describe('filterQuotesByKeyword', () => {
     const quotes = [
-        { name: 'Hubert', slug: 'hubert', quotes: ['This is quote 1', 'This is quote 2'] },
-        { name: 'Larmina', slug: 'larmina', quotes: ['This is quote 3', 'This is quote 4'] },
-      ];
+        { sentence: 'This is quote 1',
+          character: {
+            "name": "Larmina El Akmar Betouche",
+            "slug": "larmina"
+          }
+        },
+        { sentence: 'This is quote 2',
+          character: {
+            "name": "Larmina El Akmar Betouche",
+            "slug": "larmina"
+          }
+        },
+        { sentence: 'This is quote 3',
+          character: {
+            "name": "Larmina El Akmar Betouche",
+            "slug": "larmina"
+          }
+        },
+        { sentence: 'This is quote 4',
+          character: {
+            "name": "Larmina El Akmar Betouche",
+            "slug": "larmina"
+          }
+        },
+      ]
 
 
     it('should return an array of quotes filtered by the given keyword', async () => {
@@ -90,8 +112,9 @@ describe('quotesService', () => {
       const filteredQuotes = filterQuotesByKeyword(quotes, 'quote 2');
       expect(Array.isArray(filteredQuotes)).toBe(true);
       expect(filteredQuotes.length).toBe(1);
-      expect(filteredQuotes[0].quotes.length).toBe(1);
-      expect(filteredQuotes[0].quotes[0]).toBe('This is quote 2');
+      expect(filteredQuotes[0]).toHaveProperty('sentence');
+      expect(filteredQuotes[0]).toHaveProperty('character');
+      expect(filteredQuotes[0].sentence).toBe('This is quote 2');
     });
     
     it('should return an empty array of quotes filtered, if no keyword', async () => {

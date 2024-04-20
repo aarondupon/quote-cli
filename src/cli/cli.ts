@@ -34,7 +34,7 @@ export const parseCommandLineArguments = (): CommandLineOptions =>{
       // Fix parse options
   return {
     number: options.number === undefined ? undefined : Number(options.number),
-    character: options.character === undefined ? undefined : String(options.character),
-    keyword: options.keyword === undefined ? undefined : String(options.keyword),  
+    character: options.character === undefined ? undefined : options.character,
+    keyword: options.keyword === undefined ? undefined : options.keyword,  
   };
   }

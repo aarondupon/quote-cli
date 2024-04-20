@@ -24,6 +24,8 @@ This is a command-line interface (CLI) tool for retrieving quotes based on vario
 
 To install the Quote CLI, follow these steps:
 
+<i>Install Node.js if you haven't already.</i>
+
 1. Clone the repository:
 
    ```bash
@@ -37,7 +39,7 @@ To install the Quote CLI, follow these steps:
 
 3. Install dependencies:
     ```bash
-    cd npm install
+    npm install
     ```
 
 4. Usage
@@ -57,9 +59,18 @@ To install the Quote CLI, follow these steps:
     
     ```bash
     # run after build and global installation
-    $ npm run build
-    $ npm i -g . # intall global
-    $ quote-cli --help # now you can use qoute-cli anyware in your terminal 🍻
+    $ npm run build # Build the project
+    $ npm i -g . # Install global for testing localy
+    $ quote-cli --help # Now you can use qoute-cli anyware in your terminal 🍻
+    ```
+    or pack the project for distributed to others or published to a package registry.
+
+    ```bash
+    # run after build and global installation
+    $ npm run build # Build the project
+    $ npm pack # Package the module
+    $ npm install -g ./aarondupon-quote-cli-1.0.0.tgz
+    $ quote-cli --help # Now you can use qoute-cli anyware in your terminal 🍻
     ```
 
 
@@ -114,8 +125,11 @@ $ quote-cli --character="hubert"
 
 # Display a random quote containing the keyword "water"
 $ quote-cli --keyword="water"
-# Use options cumulative
+# Use options cumulatively
 $ quote-cli --number=5 --character="larmina" --keyword="water"
+
+# Use short-form options cumulatively, select multiple keywords & characters
+$ quote-cli -k="surtout" -k="b**ch" -c="larmina" -c="bill" -n=3 
 
 # Display usage information
 $ quote-cli --help
