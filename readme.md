@@ -41,7 +41,6 @@ To install the Quote CLI, follow these steps:
     ```
 
 4. Usage
-    To use the Quote CLI
 
     <b>DURING DEVELOPMENT</b>
 
@@ -53,6 +52,9 @@ To install the Quote CLI, follow these steps:
     This will execute the script, you can alsow use npm watch for development and provide you with options to retrieve quotes based on various criteria.
 
 5. Build and run as global command
+    
+    <b>INSTALLION</b>
+    
     ```bash
     # run after build and global installation
     $ npm run build
