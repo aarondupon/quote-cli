@@ -41,18 +41,24 @@ To install the Quote CLI, follow these steps:
     ```
 
 4. Usage
-    To use the Quote CLI, run the following command:
+    To use the Quote CLI
+
+    <b>DURING DEVELOPMENT</b>
+
     ```bash
-    npm start
+    # run from project folder
+    $ npm start
+    $ npm start -- --help
     ```
-    This will execute the CLI and provide you with options to retrieve quotes based on various criteria.
+    This will execute the script, you can alsow use npm watch for development and provide you with options to retrieve quotes based on various criteria.
 
-
-4. run as global command
-    Install globally:Install the script globally using npm:
+5. Build and run as global command
+    ```bash
+    # run after build and global installation
     $ npm run build
-    $ npm i -g .
-    $ quote-cli --help
+    $ npm i -g . # intall global
+    $ quote-cli --help # now you can use qoute-cli anyware in your terminal 🍻
+    ```
 
 
 ## Testing
@@ -96,6 +102,7 @@ You can use these arguments to customize the behavior of the Quote CLI and retri
 
 ### Examples
 
+Running cli after global install
 ```bash
 # Display 5 random quotes
 $ quote-cli --number=5
@@ -105,13 +112,17 @@ $ quote-cli --character="hubert"
 
 # Display a random quote containing the keyword "water"
 $ quote-cli --keyword="water"
+# Use options cumulative
+$ quote-cli --number=5 --character="larmina" --keyword="water"
 
 # Display usage information
 $ quote-cli --help
 ```
+
+Running cli in the project folder with npm
 ```bash
-# if run the script from with npm, you can pass the arguments by prefixing by --
-$ npm start -- --number=5 --character="larmina"
+# If running the script with npm, pass the arguments by prefixing them with --
+$ npm start -- --number=5 --character="larmina" --keyword="water"
 ```
 
 ## Contributing
